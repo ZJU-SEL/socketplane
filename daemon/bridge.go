@@ -418,7 +418,7 @@ func setupIPTables(bridgeName string, bridgeIP string) error {
 
 	vlanArgs := []string{"! -i eth0,eth1", "-o", bridgeName, "-j", "DROP"}
 	if !ruleExists("", "FORWARD", vlanArgs...) {
-		output, err = installRule(append([]string{
+		output, err := installRule(append([]string{
 			"-A", "FORWARD"}, vlanArgs...)...)
 		if err != nil {
 			log.Debugf("Unable to set VLAN iptables: %s", err)
