@@ -416,7 +416,7 @@ func setupIPTables(bridgeName string, bridgeIP string) error {
 		}
 	}
 
-	vlanArgs := []string{"! -i eth0", bridgeName, "-o", bridgeName, "-j", "DROP"}
+	vlanArgs := []string{"! -i eth0,eth1", "-o", bridgeName, "-j", "DROP"}
 	if !ruleExists("", "FORWARD", vlanArgs...) {
 		output, err = installRule(append([]string{
 			"-A", "FORWARD"}, vlanArgs...)...)
